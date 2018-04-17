@@ -1,1 +1,6 @@
- flask flask-sqlalchemy mysqlclient flask-migrate flask-wtf flask-login
+Flask==0.12.2
+Flask-SQLAlchemy==2.2
+mysqlclient==1.3.12
+Flask-Migrate==2.1.1
+Flask-WTF==0.14.2
+Flask-Login==0.4.1
