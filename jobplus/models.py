@@ -52,6 +52,10 @@ class User(Base, UserMixin):
     @property
     def is_company(self):
         return self.role == self.ROLE_COMPANY
+    @property
+    def is_user(self):
+    	return self.role == self.ROLE_USER
+
 
 class Company(Base):
     __tablename__ = 'company'

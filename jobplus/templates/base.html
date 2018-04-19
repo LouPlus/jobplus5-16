@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        {% block head_css %}
+        <link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/923/week7/code/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/main.css">
+        {% endblock %}
+    </head>
+    <body>
+       <nav class="navbar navbar-inverse">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">首页</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">职位<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{ url_for('live.index') }}">公司</a></li>
+            {% if current_user.is_authenticated and current_user.is_admin %}
+            <li><a href="{{ url_for('admin.index') }}">管理员后台</a></li>
+            {% elif current_user.is_authenticated and current_user.is_company %}
+            <li><a href="{{ url_for('company.index') }}">公司信息管理</a></li>
+            {% elif current_user.is_authenticated and current_user.is_user %}
+            <li><a href="{{ url_for('user.index') }}">个人信息管理</a></li>
+            {% endif %} <!-- 用户登录后根据用户身份加载不同的管理页面，路由函数设定如上，后续在蓝图中添加 -->
+  
+        </ul> 
+        <ul class="nav navbar-nav navbar-right">
+            {% if not current_user.is_authenticated %}
+            <li><a href="{{ url_for('front.com_register') }}">公司注册</a></li>
+            <li><a href="{{ url_for('front.user_register') }}">求职者注册</a></li> <!-- 前端蓝图中注册路由将公司和求职者区分开 -->
+            <li><a href="{{ url_for('front.login') }}">登录</a></li> <!-- 前端蓝图中公司，求职者和管理员共用一个登陆路由函数 -->
+            {% else %}
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="username">{{ current_user.username }}</span><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">我的主页</a></li> <!-- 用户的个人主页暂时未设定路由，可以自定义求职者和公司的个人主页，做个判断即可 -->
+                <li role="separator" class="divider"></li>
+                <li><a href="{{ url_for('front.logout') }}">退出登录</a></li> </ul> <!-- 退出操作都是一样的 -->
+            </li>
+            {% endif %}
+        </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav> 
+
+      <div class="container">
+      {% block body %}{% endblock %}
+      {% block footer %}{% endblock %}
+      </div>
+      {% block tail_js %}
+      <script src="http://labfile.oss.aliyuncs.com/courses/923/week7/code/jquery/3.2.1/jquery.min.js"></script>
+      <script src="http://labfile.oss.aliyuncs.com/courses/923/week7/code/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+      <script src="static/main.js"></script>
+      {% endblock %}
+    </body>    
+</html>
