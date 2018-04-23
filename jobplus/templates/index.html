@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="jumbotron masthead">
+	<div class="container">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524496919068&di=a6257eb9a7a139c0fdf2b02d0ca7c3ca&imgtype=0&src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F201612_8_10%2Fa9nak3870667943843.png">
+		<h1>觅</h1>
+		<h2>这里招聘求职一站式，何必别处苦苦追寻</h2>
+		<p class="masthead-button-links">
+			<a class="btn btn-lg btn-primary btn-shadow" href="{{ url_for('front.job') }}" role="button" >全部职位</a>
+		</p>
+	</div>
+</div>
+{endblock}
