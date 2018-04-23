@@ -8,7 +8,7 @@ from jobplus.models import db, User, Company, Job
 
 
 class RegisterCompanyForm(FlaskForm):
-	username = StringField('用户名', validators=[Required(), Length(3, 24)])
+    username = StringField('用户名', validators=[Required(), Length(3, 24)])
     email = StringField('邮箱', validators=[Required(), Email()])
     com_website = StringField('网站地址', validators=[Required(), URL()])
     logo_url = StringField('公司logo') #没有实现图片上传功能，这里注册的时候可以不填，使用爬到的url地址
@@ -47,7 +47,7 @@ class RegisterCompanyForm(FlaskForm):
 
 #这个就是指一般用户即求职者的注册，role默认设置成了10也即一般用户
 class RegisterForm(FlaskForm):
-	username = StringField('用户名', validators=[Required(), Length(3, 24)])
+    username = StringField('用户名', validators=[Required(), Length(3, 24)])
     email = StringField('邮箱', validators=[Required(), Email()])
     password = PasswordField('密码', validators=[Required(), Length(6, 24)])
     repeat_password = PasswordField('重复密码', validators=[Required(), EqualTo('password')])
