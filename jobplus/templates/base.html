@@ -32,7 +32,7 @@
             {% elif current_user.is_authenticated and current_user.is_company %}
             <li><a href="{{ url_for('company.edit_index') }}">公司后台管理</a></li> <!-- 职位管理和投递简历管理，按照后面设计这个是要分成两个一级标题，暂且这么写着 -->
             {% elif current_user.is_authenticated and current_user.is_user %}
-            <li><a href="{{ url_for('user.profile') }}">个人信息管理</a></li> <!-- 编辑个人信息 -->
+            <li><a href="{{ url_for('user.profile') }}">个人信息管理</a></li> <!-- 编辑个人信息 由于对应路由没写，这里会出错，用#代替测试可以使用-->
             {% endif %} <!-- 用户登录后根据用户身份加载不同的管理页面，路由函数设定如上，后续在蓝图中添加 -->
   
         </ul> 
@@ -50,7 +50,7 @@
                 {% elif current_user.is_company %}
                 <li><a href="{{ url_for('company.index') }}">公司信息编辑</a></li> <!-- 公司用户的职位简历管理在一级标题中，这里编辑公司自己的信息-->
                 {% elif current_user.is_user %}
-                <li><a href="{{ url_for('user.index') }}">我的投递</a></li> <!-- 展示已投递岗位信息，可加入修改撤销等功能 -->
+                <li><a href="{{ url_for('user.index') }}">我的投递</a></li> <!-- 展示已投递岗位信息，可加入修改撤销等功能 由于对应路由没写，这里会出错，用#代替测试可以使用 -->
                 {% endif %} <!-- 用户登录后根据用户身份加载不同的个人页面页面，路由函数设定如上，后续在蓝图中添加 -->
                 <li role="separator" class="divider"></li>
                 <li><a href="{{ url_for('front.logout') }}">退出登录</a></li> 
