@@ -35,7 +35,7 @@ class RegisterCompanyForm(FlaskForm):
                     password=self.password.data,
                     role=20) #role设置为20即企业用户
         db.session.add(user)
-        db.session.commit()
+        db.session.commit() #可以设置某个参数，使每一次add都会自动commit，我原来那个写法没有建立起来联系是因为user对象没有加入数据库时主键id为空
         user = User.query.filter_by(username=self.username.data).first()
         company = Company(user_id=user.id,
                           companyname=self.username.data,
