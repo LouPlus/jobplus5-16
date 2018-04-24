@@ -27,7 +27,7 @@ def user_register():
         form.create_user()
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
-    return render_template('register.html', form=form) #可以共用一个注册html页面，因为传入的form对象不同可以有不同的渲染
+    return render_template('registeruser.html', form=form) #使用不同的注册页面
 
 @front.route('/registercompany', methods=['GET', 'POST'])
 def com_register():
@@ -36,7 +36,7 @@ def com_register():
         form.create_user()
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
-    return render_template('register.html', form=form) #可以共用一个注册html页面，因为传入的form对象不同可以有不同的渲染
+    return render_template('registercompany.html', form=form) 
 
 @front.route('/job')
 def job():
