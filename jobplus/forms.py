@@ -34,14 +34,16 @@ class RegisterCompanyForm(FlaskForm):
                     email=self.email.data,
                     password=self.password.data,
                     role=20) #role设置为20即企业用户
+        db.session.add(user)
+        db.session.commit()
+        user = User.query.filter_by(username=self.username.data).first()
         company = Company(user_id=user.id,
-        	              companyname=self.username.data,
-        	              com_website=self.com_website.data,
+                          companyname=self.username.data,
+                          com_website=self.com_website.data,
                           logo_url=self.logo_url.data,
                           com_shortinfo=self.com_shotinfo.data,
                           com_description=self.com_description.data,
                           com_address=self.com_adress.data) #通过id将user和company表一对一关联起来，这里面logo_url要是空的话不知是否会出错，company=Company() self.populate_obj(company)如出错可以换用这个形式填充
-        db.session.add(user)
         db.session.add(company)
         db.session.commit()
         return user
