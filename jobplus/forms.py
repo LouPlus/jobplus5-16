@@ -34,7 +34,7 @@ class RegisterCompanyForm(FlaskForm):
                     email=self.email.data,
                     password=self.password.data,
                     role=20) #role设置为20即企业用户
-        company = Company(id=user.id,
+        company = Company(user_id=user.id,
         	              companyname=self.username.data,
         	              com_website=self.com_website.data,
                           logo_url=self.logo_url.data,
