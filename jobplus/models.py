@@ -61,7 +61,7 @@ class User(Base, UserMixin):
 class Company(Base):
     __tablename__ = 'company'
     
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True) #主键和外键设置一致，建立严格的一对一关系
+    id = db.Column(db.Integer, primary_key=True) 
     companyname = db.Column(db.String(32), unique=True, index=True, nullable=False) #要与关联的username一致，暂时先设置这个字段
     logo_url = db.Column(db.String(256)) #公司logo
     com_website = db.Column(db.String(256)) #公司网站
@@ -69,6 +69,7 @@ class Company(Base):
     com_description = db.Column(db.String(512)) #详细描述
     com_address = db.Column(db.String(32)) #公司地点
     comrecruit_num = db.Column(db.Integer) #招聘岗位数量,应该是要和job表有个关系，数据保持实时更新，在增删岗位的时候
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"))
     recruit_jobs = db.relationship('Job') #公司招聘的岗位列表
 
     def __repr__(self):
