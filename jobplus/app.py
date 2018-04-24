@@ -1,10 +1,13 @@
 #coding=utf-8
+import sys
 from flask import Flask
 from flask_migrate import Migrate
 from jobplus.config import configs
 from jobplus.models import db, User
 from flask_login import LoginManager
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def register_extensions(app):
     db.init_app(app)
