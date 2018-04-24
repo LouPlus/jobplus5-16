@@ -1,3 +1,4 @@
+#coding=utf-8
 '''输入的数据都需要通过Form提交处理，所以form类的建立要有逻辑。决定将公司注册的页面表格单独拿出来，
 RegisterCompanyForm表中也不一定要将Company表中所有信息列为必填项，挑几个必填，然后建立CompanyForm,创建公司信息更新函数进行数据更新
 '''

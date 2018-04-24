@@ -1,3 +1,4 @@
+#coding=utf-8
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
 from jobplus.models import User, Company, Job
 from jobplus.forms import RegisterForm, LoginForm, RegisterCompanyForm
