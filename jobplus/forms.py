@@ -1,3 +1,4 @@
+#coding=utf-8
 '''输入的数据都需要通过Form提交处理，所以form类的建立要有逻辑。决定将公司注册的页面表格单独拿出来，
 RegisterCompanyForm表中也不一定要将Company表中所有信息列为必填项，挑几个必填，然后建立CompanyForm,创建公司信息更新函数进行数据更新
 '''
@@ -8,7 +9,7 @@ from jobplus.models import db, User, Company, Job
 
 
 class RegisterCompanyForm(FlaskForm):
-	username = StringField('用户名', validators=[Required(), Length(3, 24)])
+    username = StringField('用户名', validators=[Required(), Length(3, 24)])
     email = StringField('邮箱', validators=[Required(), Email()])
     com_website = StringField('网站地址', validators=[Required(), URL()])
     logo_url = StringField('公司logo') #没有实现图片上传功能，这里注册的时候可以不填，使用爬到的url地址
@@ -33,21 +34,23 @@ class RegisterCompanyForm(FlaskForm):
                     email=self.email.data,
                     password=self.password.data,
                     role=20) #role设置为20即企业用户
-        company = Company(id=user.id,
-        	              companyname=self.username.data,
-        	              com_website=self.com_website.data,
-                          logo_url=self.logo_url.data,
-                          com_shotinfo=self.com_shotinfo.data,
-                          com_description=self.com_description.data,
-                          com_adress=self.com_adress.data) #通过id将user和company表一对一关联起来，这里面logo_url要是空的话不知是否会出错，company=Company() self.populate_obj(company)如出错可以换用这个形式填充
         db.session.add(user)
+        db.session.commit() #可以设置某个参数，使每一次add都会自动commit，我原来那个写法没有建立起来联系是因为user对象没有加入数据库时主键id为空
+        user = User.query.filter_by(username=self.username.data).first()
+        company = Company(user_id=user.id,
+                          companyname=self.username.data,
+                          com_website=self.com_website.data,
+                          logo_url=self.logo_url.data,
+                          com_shortinfo=self.com_shotinfo.data,
+                          com_description=self.com_description.data,
+                          com_address=self.com_adress.data) #通过id将user和company表一对一关联起来，这里面logo_url要是空的话不知是否会出错，company=Company() self.populate_obj(company)如出错可以换用这个形式填充
         db.session.add(company)
         db.session.commit()
         return user
 
 #这个就是指一般用户即求职者的注册，role默认设置成了10也即一般用户
 class RegisterForm(FlaskForm):
-	username = StringField('用户名', validators=[Required(), Length(3, 24)])
+    username = StringField('用户名', validators=[Required(), Length(3, 24)])
     email = StringField('邮箱', validators=[Required(), Email()])
     password = PasswordField('密码', validators=[Required(), Length(6, 24)])
     repeat_password = PasswordField('重复密码', validators=[Required(), EqualTo('password')])
