@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="company-detail__base">
+    <div class="container">
+        <div class="row mt30 mb30" id="infoBoard">
+            <div class="col-md-2 col-sm-3"><div class="img-warp"><img width="100%" src="{{ company.logo_url }}"></div></div>
+            <div class="col-md-7 col-sm-7">
+                <div class="company-name">
+                    <h3 class="visible-xs-block">{{ company.companyname }}</h3>
+                    <p class="company-desc ellipsis text-muted">{{ company.com_shortinfo }}</p>
+                    <ul class="list-inline ml0 mb0 company-detail-mod-base-info__tags">
+                        <li>Enterprise service</li>
+                    </ul>
+                    <div><a href="{{ company.com_website }}" rel="nofollow">{{ company.com_website }}</a></div>
+                </div>
+            </div>
+
+            <div class="col-md-3 hidden-xs">
+                <div class="mb10">
+                    <button class="btn btn-sm btn-success followBtn" data-id="1270000014582638" data-do="follow" data-type="company">follow</button>
+                    <span class="text-muted">follow by</span><strong class="ml10 mr5" id="followCount">0</strong>|<span class="text-muted">browse by</span><strong>27 </strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+            <div class="company-detail__mod ">
+                <div class="company-detail__mod--heading">
+                    <h4>about us</h4>
+                </div>
+                <div class="company-detail__mod--content" id="detailBoard">
+                    <div class="mt30 fmt">
+                        <p><a href="{{ company.com_website }}">{{ company.com_website }}</a><br>{{ company.com_description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="company-detail__mod ">
+                <div class="company-detail__mod--heading">
+                    <h4>Characteristic welfare</h4>
+                </div>
+                <div class="company-detail__mod--content" data-mod="benefit" data-proto="benefitsList">
+                    <div class="company-detail__benefit">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <p class="company-detail__benefit-item"><span class="benefits benefits-beach"></span><span class="text">Overseas annual meeting</span></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="company-detail__mod">
+                <div class="company-detail__mod--content">
+                    <div class="widget-job-list widget-job-list-company-detail">
+                        <h5 class="widget-job-list__heading">Recruitment position</h5>
+                        <ul class="widget-job-list__list">
+                            {% for job in company.recruit_jobs %}
+                            <li class="widget-job-list__item">
+                            <a href="{{ job.url }}"><h3 class="widget-job-list__item--title">{{ job.jobname }}</h3></a>
+                            <p class=" widget-job-list__item--detail"><span class="salary">{{ job.salary_down }}-{{ job.salary_up }}</span><span class="experience">{{ job.exper_need }}</span><span>{{ job.job_need }}</span></p>
+                            </li>
+                            {% endfor %}
+                            <a class="widget-job-list__item--more" target="_blank" href="{{url_for('job.index') }}">show all positions</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="company-detail__mod ">
+                <div class="company-detail__mod--heading">
+                    <h4>Working place</h4>
+                </div>
+                <div class="company-detail__mod--content" data-mod="address" data-proto="addressList">
+                    <div class="company-detail__mod-address company-detail__address">{{ company.com_address }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+{% endblock %}

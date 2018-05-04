@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_pagination %}
+{% block body %}
+
+<div class="container companys wrap">
+    <div class="row">
+        <div class="col-xs-12 col-md-9 main">
+            <div class="job-list">
+                <h2 class="h4 mt40 job-list-title">The latest position</h2>
+                <div class="job-list-item row">
+
+                    {% for job in pagination.items %}
+                    <div class="col-md-6 job-list-item-block">
+                        <a href="{{ job.url }}" class="job-name nowrap">{{ job.jobname }}</a>
+                        <span class="text-muted job-list-item-block-city"> [{{job.work_address}}]</span>
+                        <div class="text-muted job-require">
+                            <strong class="text-green">{{job.salary_down}}-{{job.salary_up}}</strong>/ {{job.exper_need}} / {{job.job_need}} </div>
+                        <p class="text-muted job-list-item-block-company-info"><a href="{{job.recruit_company.url }}">{{job.recruit_company.companyname }}</a> at {{ job.created_at }} </p>
+                    </div>
+                    {% endfor %}
+                </div>
+                    {{ render_pagination(pagination, 'job.index') }}
+                <p class="more"><span><a href="/jobs/search">More recent positions</a></span></p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-3 side mt40">
+            <div class="widget-box widget-job-list widget-job-list--interested clearfix">
+                <h5 class="widget-job-list__heading">Personal files</h5>
+                <div class="mt15 ml20 mr10">
+                    <p class="h5 fz16 text-red">Your file is blank</p>
+                    <p class="text-muted">What kind of development is good at, what editor to use, what open source projects and so on?</p>
+                    <a href="javascript:void(0);" target="_blank" class="SFLogin mt5 pull-left btn btn-primary">Create my file</a>
+                    <img class="pull-right" height="68" src="https://static.segmentfault.com/v-5ae2d994/global/img/invite-profile.png">
+                </div>
+            </div>
+
+            <div class="company-func"><h4>Recommended enterprise</h4>
+                <div class="company-suggest">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <div class="company-suggest-item">
+                                    <a target="_blank" href="/o/toutiao"></a><a href="/o/toutiao"></a>
+                                    <div class="company-logo-warp">
+                                        <a href="/o/toutiao">
+                                            <div class="company-logo-shadow">
+                                                <div class="img" style="background-image: url('https://sfault-logo.b0.upaiyun.com/228/490/2284901245-5913ca2e98bb9_small100')"></div>
+                                            </div>
+                                        </a>
+                                        <a target="_blank" href="/o/toutiao/jobs"><span class="job-num">0 positions of recruiting</span></a>
+                                    </div>
+                                    <h5><a target="_blank" href="/o/toutiao">Today's headline</a></h5>
+                                    <p class="company-desc">"Today's headlines" is a recommendation engine product based on data mining...</p>
+                                </div>
+
+                                <div class="company-suggest-item">
+                                    <a target="_blank" href="/o/xuetangx"></a>
+                                    <div class="company-logo-warp">
+                                        <a target="_blank" href="/o/xuetangx">
+                                            <div class="company-logo-shadow">
+                                                <div class="img" style="background-image: url('https://sfault-logo.b0.upaiyun.com/342/089/3420895216-58d399d3c485f_small100')"></div>
+                                            </div>
+                                        </a>
+                                        <a target="_blank" href="/o/xuetangx/jobs"><span class="job-num">0 positions of recruiting</span></a>
+                                    </div>
+                                    <h5><a target="_blank" href="/o/xuetangx">School Online</a></h5>
+                                    <p class="company-desc">School online is a Chinese MOOC developed by Tsinghua University (large-scale open online course),...</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

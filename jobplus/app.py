@@ -6,8 +6,8 @@ from jobplus.config import configs
 from jobplus.models import db, User
 from flask_login import LoginManager
 
-reload(sys)
-sys.setdefaultencoding('utf-8') #在windows环境下编写的代码在linux上运行会出现编码错误，加上这几句就不会报错了
+#reload(sys)
+#sys.setdefaultencoding('utf-8') #在windows环境下编写的代码在linux上运行会出现编码错误，加上这几句就不会报错了
 
 def register_extensions(app):
     db.init_app(app)

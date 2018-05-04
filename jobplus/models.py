@@ -3,6 +3,7 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import url_for
 
 db = SQLAlchemy()
 
@@ -75,6 +76,10 @@ class Company(Base):
     def __repr__(self):
         return '<Company:{}>'.format(self.companyname)
 
+    @property
+    def url(self):
+        return url_for('company.detail',company_id=self.id)
+
 class Job(Base):
     __tablename__ = 'job'
 
@@ -94,4 +99,6 @@ class Job(Base):
     def __repr__(self):
         return '<Job:{}>'.format(self.jobname)
 
-
+    @property
+    def url(self):
+        return url_for('job.detail',job_id=self.id)

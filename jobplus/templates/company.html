@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_pagination %}
+{% block body %}
+
+<div class="row">
+    <div class="col-xs-12 col-md-9 main">
+        <h1 class="h4 mt30 nav-title">Enterprise list</h1>
+        <div class="company-list">
+
+            {% for company in pagination.items %}
+            <div class="row" style="margin-right: 0;">
+                <div class="media">
+                    <div class="col-md-9">
+                        <div class="pull-left">
+                            <div class="img-warp">
+                                <a href="{{ company.url }}" class="company-logo" style="background-image: url('{{ company.logo_url }}')"></a>
+                            </div>
+                        </div>
+                        <div class="media-body" style="padding-left: 12px;"><h4 class="media-heading" id="media-heading">
+                                <a href="{{ company.url }}">{{ company.companyname }}</a>
+                                <a class="anchorjs-link" href="#media-heading"><span class="anchorjs-icon"></span></a></h4>
+                            <a class="company-site" target="_blank" rel="nofollow" href="{{ company.com_website }}">{{ company.com_website }}</a>
+                            <p class="company-desc">{{ company.com_shortinfo }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="company-list-single-info">
+                            <li class="text-muted">
+                            <i class="fa fa-user"></i>
+                            <a class="company-list-single-info-num" target="_blank" href="/o/jinou/jobs"><span>5</span></a> <span> positions of recruiting</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-md-3 side mt40">
+        <div class="widget-box widget-job-list widget-company-invite clearfix">
+            <h5 class="widget-job-list__heading">Company Pages</h5>
+            <div class="mt15 ml20 mr10">
+                <p class="h5 fz16 text-red">recruit by Technical team endorsement</p>
+                <p class="text-muted">Join with your technical team to show your technical strength and work together.</p>
+                <a href="/jobs/intro#createForm" target="_blank" class="mt5 pull-left btn btn-primary">Create the enterprise home page</a>
+                <img class="pull-right" height="60" src="https://static.segmentfault.com/v-5ae2d994/global/img/invite-company.png">
+            </div>
+        </div>
+        <div class="widget-box widget-job-list widget-job-list--interested clearfix">
+            <h5 class="widget-job-list__heading">Personal files</h5>
+            <div class="mt15 ml20 mr10">
+                <p class="h5 fz16 text-red">Your file is blank</p>
+                <p class="text-muted">What kind of development is good at, what editor to use, what open source projects and so on?</p>
+                <a href="javascript:void(0);" target="_blank" class="SFLogin mt5 pull-left btn btn-primary">Create my file</a>
+                <img class="pull-right" height="68" src="https://static.segmentfault.com/v-5ae2d994/global/img/invite-profile.png">
+            </div>
+        </div>
+
+        <div class="company-func"><h4>Recommended enterprise</h4>
+            <div class="company-suggest">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="company-suggest-item">
+                                <a target="_blank" href="/o/toutiao"></a><a href="/o/toutiao"></a>
+                                <div class="company-logo-warp">
+                                    <a href="/o/toutiao">
+                                        <div class="company-logo-shadow">
+                                            <div class="img" style="background-image: url('https://sfault-logo.b0.upaiyun.com/228/490/2284901245-5913ca2e98bb9_small100')"></div>
+                                        </div>
+                                    </a>
+                                    <a target="_blank" href="/o/toutiao/jobs"><span class="job-num">0 positions of recruiting</span></a>
+                                </div>
+                                <h5><a target="_blank" href="/o/toutiao">Today's headline</a></h5>
+                                <p class="company-desc">"Today's headlines" is a recommendation engine product based on data mining...</p>
+                            </div>
+
+                            <div class="company-suggest-item">
+                                <a target="_blank" href="/o/xuetangx"></a>
+                                <div class="company-logo-warp">
+                                    <a target="_blank" href="/o/xuetangx">
+                                        <div class="company-logo-shadow">
+                                            <div class="img" style="background-image: url('https://sfault-logo.b0.upaiyun.com/342/089/3420895216-58d399d3c485f_small100')"></div>
+                                        </div>
+                                    </a>
+                                    <a target="_blank" href="/o/xuetangx/jobs"><span class="job-num">0 positions of recruiting</span></a>
+                                </div>
+                                <h5><a target="_blank" href="/o/xuetangx">School Online</a></h5>
+                                <p class="company-desc">School online is a Chinese MOOC developed by Tsinghua University (large-scale open online course),...</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ render_pagination(pagination, 'company.index') }}
+{% endblock %}

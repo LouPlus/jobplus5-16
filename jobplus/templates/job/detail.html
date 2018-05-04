@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="wrap">
+    <div class="post-topheader">
+        <div class="container">
+            <div class="block-for-right-border">
+                <div class="row">
+                    <div class="col-md-9 col-xs-12">
+                        <div class="job-detail__logo--heading">
+                            <img src="{{ job.recruit_company.logo_url }}">
+                        </div>
+                        <div class="job-detail__job-info">
+                            <h3 class="post-topheader__info--title"><a href="{{ job.url }}">{{ job.jobname }}</a></h3>
+                            <ul class="job-detail__requirements">
+                                <li class="salary"><span>{{ job.salary_down }}-{{ job.salary_up }}</span></li>
+                                <li class="cities">{{ job.work_address }}</li>
+                                <li>{{ job.job_need }}</li>
+                                <li>{{ job.exper_need }}</li>
+                                <li><span class="ml5 inline-block"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 hidden-sm hidden-xs job-detail__func">
+                        <div class="job-detail__func-item">
+                            <button class="btn btn-sm btn-success followBtn submit-resume" data-type="company">hand in resume</button>
+                            <span class="job-detail__func-desc"><i class="fa fa-hand-o-left"></i> Quick delivery</span>
+                        </div>
+                        <div class="job-detail__func-item">
+                            <button class="btn btn-sm btn-default " data-id="{{ job.id }}" data-do="bookmark" data-type="job">Collection</button>
+                            <span class="job-detail__func-desc"><strong data-type="bookmarkNum">0 </strong>Collection?<strong>5 </strong>browse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container job-detail__detail">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main mt30">
+                <div class="fmt">
+                    <h4 class="job-detail__heading--catalog">Job description</h4>
+                    <p>{{ job.job_description }}</p>
+                    <h4 class="job-detail__heading--catalog">Job requirements</h4>
+                    <p>{{ job.job_need }}</p>
+                </div>
+                <p class="mt20 text-muted">{{ job.created_at }}</p>
+                <div class="bg-gray job-detail__foot">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="javascript:void(0);" class="btn btn-primary btn-lg submit-resume">Resumes</a>
+                            <span class="text-muted job-detail__foot-desc"><i class="fa fa-hand-o-left"></i>Interested? Quick Resume</span>
+                        </div>
+                        <div class="job-detail__share col-md-6 text-right">
+                            <div class="widget-share__full" data-text="{{ job.jobname }}" data-url="{{ job.url }}">
+                                <div style="margin-bottom:10px;">Sharing diffusion:</div>
+                                <div class="widget-share-network sharer-0" style="display: block;">
+                                    <ul class="sn-inline">
+                                        <li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Share to Twitter">Twitter</a></li>
+                                    </ul>
+                                </div>
+                                <a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="{{ job.url }}" data-shorturl="{{ job.url }}">
+                                    <span class="icon-sn-dotted" data-original-title="" title=""></span>
+                                    <strong class="visible-xs-inline">...</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 mt30">
+                <div class="job-detail__company-info  mb30">
+                    <div class="job-detail__logo--side">
+                        <a href="{{ job.recruit_company.url }}" target="_blank"><img alt="{{ job.recruit_company.companyname }}" src="{{ job.recruit_company.logo_url }}"></a>
+                    </div>
+                    <div class="job-detail__company-info-warp">
+                        <h3 class="job-detail__company-info-name">{{ job.recruit_company.companyname }}</h3>
+                        <p class="job-detail__company-info-desc">{{ job.recruit_company.com_shortinfo }}</p>
+                        <ul class="job-detail__company-info-tags">
+                            <li>Enterprise service</li>
+                        </ul>
+                        <div class="job-detail__company-info-link">
+                            <a class="btn btn-info" href="/o/jinou">Enterprise archives</a>
+                            <a class="btn btn-warning pull-right" href="/o/jinou/jobs">5 positions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-box widget-job-list widget-job-list--interested">
+                    <h5 class="widget-job-list__heading">Interest</h5>
+                    <ul class="widget-job-list__list">
+
+                        <li class="widget-job-list__item"><a target="_blank" href="/j/1280000013632280"><h3 class="widget-job-list__item--title">Senior PHP Engineer / Architect</h3></a><p class=" widget-job-list__item--detail"><span class="salary">15k-60k</span><span class="cities">Beijing</span><span>JD.COM</span></p></li>
+
+                        <li class="widget-job-list__item"><a class="widget-job-list__item--more" href="/jobs/search?status=recommend">More recommended positions ?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
